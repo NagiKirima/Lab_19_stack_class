@@ -1,7 +1,7 @@
 #pragma once
 //стек
 #include <iostream>
-#include <stdexcept>
+#include <vector>
 using namespace std;
 template <typename t>
 class Node
@@ -18,26 +18,40 @@ public:
 template <typename t>
 class Stack
 {
-	Node<t>* _head;
-	int _size;
+	Node<t>* _head; // head of stack
+	int _size; // stack size
 public:
-	Stack(const Stack &list) 
+	Stack(const Stack& list) //copy constructor
 	{
+		vector<t> listofvalues;
+		Node<t>* tmp = list._head;
+		while (tmp != nullptr) 
+		{
+			listofvalues.push_back(tmp->value);
+			tmp = tmp->next;
+		}
+		_head = nullptr;
+		_size = 0;
+		while (!listofvalues.empty()) 
+		{
+			push(listofvalues[listofvalues.size() - 1]);
+			listofvalues.pop_back();
+		}
 	}
-	Stack() 
+	Stack() //stock constructor
 	{
 		_head = nullptr;
 		_size = 0;
 	}
-	int size() { return _size; }
-	void push(t Value) 
+	int size() { return _size; } //return stack size
+	void push(t Value) //add element in stack
 	{
 		_size++;
 		Node<t>* newel = new Node<t>(Value, _head);
 		_head = newel;
 	}
-	bool empty() { return _head == nullptr; }
-	void pop() 
+	bool empty() { return _head == nullptr; } //check stack size
+	void pop() //deleted _head of stack
 	{
 		if (empty()) 
 		{
@@ -49,7 +63,7 @@ public:
 		tmp = nullptr;
 		_size--;
 	}
-	t top()
+	t top() //access to _head
 	{
 		if (empty())
 		{
@@ -57,7 +71,7 @@ public:
 		}
 		return _head->value;
 	}
-	~Stack() 
+	~Stack() //destructor
 	{
 		while (!empty())
 			pop();

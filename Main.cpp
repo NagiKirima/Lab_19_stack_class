@@ -22,12 +22,15 @@ int main()
 	list.push("3");
 	list.push("4");
 	Stack<string> list2;// (list);
-	list2 = list;
+	Stack<string> list3;
+	list2 = list3 = list;
 	cout << "Раземер стека:\t" << list.size() << endl;
 	cout << "List1:\n";
 	Show(list);
 	cout << "List2:\n";
 	Show(list2);
+	cout << "List3:\n";
+	Show(list3);
 	list.pop();
 	if (!list.empty())
 		cout << list.top();

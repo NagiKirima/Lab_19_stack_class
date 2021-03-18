@@ -21,7 +21,8 @@ int main()
 	list.push("2");
 	list.push("3");
 	list.push("4");
-	Stack<string> list2(list);
+	Stack<string> list2;// (list);
+	list2 = list;
 	cout << "Раземер стека:\t" << list.size() << endl;
 	cout << "List1:\n";
 	Show(list);

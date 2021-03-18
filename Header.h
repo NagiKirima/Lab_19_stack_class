@@ -76,4 +76,22 @@ public:
 		while (!empty())
 			pop();
 	}
+	Stack& operator=(const Stack& list) 
+	{
+		vector<t> listofvalues;
+		Node<t>* tmp = list._head;
+		while (tmp != nullptr)
+		{
+			listofvalues.push_back(tmp->value);
+			tmp = tmp->next;
+		}
+		this->_head = nullptr;
+		this->_size = 0;
+		while (!listofvalues.empty())
+		{
+			this->push(listofvalues[listofvalues.size() - 1]);
+			listofvalues.pop_back();
+		}
+		return *this;
+	}
 };
